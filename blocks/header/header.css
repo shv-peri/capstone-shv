@@ -4,6 +4,30 @@ header .nav-wrapper {
   width: 100%;
   z-index: 2;
   position: fixed;
+  margin-top: 0;
+  padding-bottom: 50px;
+  padding-top: 50px;
+  -webkit-transition: padding-bottom 0s ease, padding-top 0s;
+  transition: padding-bottom 0s ease, padding-top 0s;
+}
+
+header .nav-wrapper.scaleout-header{
+  padding-bottom: 50px;
+  padding-top: 50px;
+  margin-top: -60px;
+}
+
+header .top-nav-wrapper{
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding: 6px;
+}
+
+header .top-nav-wrapper div{
+  max-width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 header nav {
@@ -266,3 +290,4 @@ header nav .nav-sections ul > li > ul > li {
 header nav .nav-tools {
   grid-area: tools;
 }
+

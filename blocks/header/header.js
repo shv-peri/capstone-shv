@@ -117,7 +117,8 @@ export default async function decorate(block) {
   block.textContent = '';
   const nav = document.createElement('nav');
   nav.id = 'nav';
-  while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
+  console.log(fragment.childNodes)
+  // while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
   const classes = ['brand', 'sections', 'tools'];
   classes.forEach((c, i) => {
@@ -158,9 +159,24 @@ export default async function decorate(block) {
   // prevent mobile nav behavior on window resize
   toggleMenu(nav, navSections, isDesktop.matches);
   isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+  const topNavWrapper = document.createElement('div');
+  topNavWrapper.className = 'top-nav-wrapper';
+  block.append(topNavWrapper);
 
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
+  const topNavElements = document.querySelector('.section.top-nav-bar-signin');
+  document.querySelector('.top-nav-wrapper').append(topNavElements)
+}
+
+window.onscroll = function(){
+  const header = document.querySelector('.nav-wrapper');
+  header.classList.add('scaleout-header');
+  if(window.scrollY > 40){
+    header.classList.add('scaleout-header');
+  }else{
+    header.classList.remove('scaleout-header');
+  }
 }
