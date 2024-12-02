@@ -17,6 +17,7 @@
   --dark-color: #505050;
   --text-color: #131313;
   --link-color: #3b63fb;
+  --dark-color: #202020;
   --link-hover-color: #1d3ecf;
 
   /* fonts */
@@ -82,6 +83,7 @@ body {
 
 body.appear {
   display: block;
+  overflow-x: hidden;
 }
 
 header {

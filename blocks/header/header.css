@@ -28,6 +28,7 @@ header .top-nav-wrapper div{
   max-width: 100%;
   display: flex;
   justify-content: flex-end;
+  line-height: 2px;
 }
 
 header nav {
