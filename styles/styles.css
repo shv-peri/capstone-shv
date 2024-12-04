@@ -16,6 +16,7 @@
   --light-color: #f8f8f8;
   --dark-color: #505050;
   --text-color: #131313;
+  --text-dark-color:#202020;
   --link-color: #3b63fb;
   --patch-color:#ebebeb;
   --link-hover-color: #1d3ecf;
@@ -183,8 +184,8 @@ button {
   line-height: 1.25;
   text-align: center;
   text-decoration: none;
-  background-color: var(--brandPrimary, #ffea00);
-  color: var(--textColor, #202020);
+  background-color: var(--yellow-color);
+  color: var( --text-dark-color);
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -195,7 +196,7 @@ a.button:hover,
 a.button:focus,
 button:hover,
 button:focus {
-  background-color: var(--brandPrimary, #ffea00);
+  background-color: var(--yellow-color);
   cursor: pointer;
 }
 
@@ -258,6 +259,18 @@ main .section.highlight {
   padding: 40px 0;
 }
 
+.magazine-cards .cards-card-image img {
+  max-width: 100%;
+  width: auto;
+  height: 70%;
+}
+
+.about-us-section-contributors .cards .cards-card-image img{
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+
 .section.highlight-column.columns-container .columns > div img {
   height: 100%;
   object-fit: cover;
@@ -268,10 +281,6 @@ main .section.highlight {
   gap: 0;
 }
 
-.section.highlight-column.columns-container .columns > div:first-child {
-  align-items: normal;
-  gap: 0;
-}
 .section.highlight-column.columns-container  .columns .columns-img-col + div{
   padding: 30px 20px 10px 30px;
 }
@@ -280,9 +289,7 @@ main .section.highlight {
 .highlight-column .columns-wrapper .columns.block{
   background-color: var(--patch-color);
 }
-#camping-in-western-australia + p{
-  text-align: justify;
-}
+
 .magazine-cards .cards-card-body p:nth-child(2) {
   font-size: 0.85em;
   color: #555;
@@ -291,11 +298,7 @@ main .section.highlight {
   white-space: nowrap;
 }
 
-.magazine-cards .cards-card-image img {
-  max-width: 100%;
-  width: auto;
-  height: 70%;
-}
+
 
 /* for styling underline headers */
 
@@ -313,24 +316,27 @@ main .default-content-wrapper > h2::after {
   position: absolute;
   bottom: -10px;
 }
+
 .about-us-section-contributors .cards ul li{
   border: none;
 }
+
 .about-us-section-contributors .cards .cards-card-image{
   text-align: center;
 }
-.about-us-section-contributors .cards .cards-card-image img{
-  height: 200px;
-  width: 200px;
-  border-radius: 50%;
-}
+
 .about-us-section-contributors .cards .cards-card-body{
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
 }
+
 .about-us-section-contributors .cards .cards-card-body p:last-child{
   display: flex;
   justify-content: start;
+}
+
+#camping-in-western-australia + p{
+  text-align: justify;
 }

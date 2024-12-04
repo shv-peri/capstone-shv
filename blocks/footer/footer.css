@@ -3,7 +3,11 @@ footer {
   font-size: var(--body-font-size-xs);
   color: var(--light-color);
 }
- 
+
+footer .footer p {
+  margin: 0;
+}
+
 footer .footer > div {
   margin: auto;
   max-width: 1200px;
@@ -17,6 +21,7 @@ footer .section:first-child > div {
   column-gap: 6rem;
   padding-bottom: 40px;
 }
+
  
 footer .section:first-child > div p {
   line-height: 0;
@@ -52,10 +57,6 @@ footer .section:last-child > div {
   display: flex;
   flex-direction: column;
   gap: .6rem;
-}
- 
-footer .footer p {
-  margin: 0;
 }
  
 @media (width >= 900px) {

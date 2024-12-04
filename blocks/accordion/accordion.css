@@ -6,13 +6,13 @@
   .accordion details + details {
     margin-top: 6px;
   }
-  
-  .accordion details p {
-    margin-bottom: 0.8em;
-  }
 
   .accordion-item-body p{
     font-size: 14px;
+  }
+
+  .accordion details p {
+    margin-bottom: 0.8em;
   }
   
   .accordion details summary {
@@ -22,7 +22,6 @@
     cursor: pointer;
     list-style: none;
     overflow: auto;
-    /* transition: background-color 0.2s; */
   }
   
   .accordion details[open] summary {
