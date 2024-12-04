@@ -69,6 +69,8 @@ async function createButtonsMap(jsonURL, parentDiv, limit, offset) {
     button.addEventListener('click', async () => {
       offsetVal = 0; // Reset _offset on button click
       const filter = key !== 'all' ? key : null;
+      document.querySelectorAll('.btn-activity').forEach((el) => el.classList.remove('active'));
+      button.classList.add('active');
       const cardsContainer = await createCardsContainer(jsonURL, filter, limit, offsetVal);
       const existingContainer = parentDiv.querySelector('.cards-container');
       existingContainer.replaceWith(cardsContainer);

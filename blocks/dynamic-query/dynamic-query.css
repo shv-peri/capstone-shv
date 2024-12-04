@@ -1,48 +1,35 @@
-  .adventures-block {
+.adventures-block {
     display: flex;
     flex-direction: column;
     gap: 16px;
-  }
+}
 
-  .btn-activity{
-    margin: 0 5px;
-    background-color: transparent;
-  }
-
-  .btn-activity:hover{
-    background-color: var(--yellow-color);
-  }
-
-  .btn-activity.active{
-    background-color: var(--text-dark-color);
-    color: var(--background-color);
-  }
-  
-  .cards-container {
+.dynamic-cards-container {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
   }
   
-  .card {
+  .dynamic-card {
     border: 1px solid #ccc;
     border-radius: 8px;
     overflow: hidden;
+    min-height: 250px;
     width: calc(25% - 16px);
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
   }
   
-  .card img {
+  .dynamic-card img {
     width: 100%;
     height: 70%;
   }
   
-  .card h3 {
+  .dynamic-card h3 {
     margin: 8px;
     font-size: 1em;
   }
   
-  .card p {
+  .dynamic-card p {
     margin: 8px;
     font-size: 0.85em;
     color: #555;
@@ -50,4 +37,3 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  
