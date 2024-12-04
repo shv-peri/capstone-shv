@@ -117,7 +117,6 @@ export default async function decorate(block) {
   block.textContent = '';
   const nav = document.createElement('nav');
   nav.id = 'nav';
-  console.log(fragment.childNodes)
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
   const classes = ['brand', 'sections', 'tools'];
@@ -169,14 +168,29 @@ export default async function decorate(block) {
   block.append(navWrapper);
   const topNavElements = document.querySelector('.section.top-nav-bar-signin');
   document.querySelector('.top-nav-wrapper').append(topNavElements)
+
+
+
+  const searchElem =  document.querySelector('.form-wrapper #form');
+  searchElem.addEventListener('keypress', function(event){
+    event.stopPropagation();
+    if(event.charCode === 13){
+      let url = "www.google.com";
+      if (!url.startsWith("http")) {
+          url = "https://" + url; 
+      }
+      window.open(url, '_blank');
+    }
+  });
 }
 
 window.onscroll = function(){
   const header = document.querySelector('.nav-wrapper');
-  header.classList.add('scaleout-header');
   if(window.scrollY > 40){
-    header.classList.add('scaleout-header');
+    header?.classList?.add('scaleout-header');
   }else{
-    header.classList.remove('scaleout-header');
+    header?.classList?.remove('scaleout-header');
   }
 }
+
+

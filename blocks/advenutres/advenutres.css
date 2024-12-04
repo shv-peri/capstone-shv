@@ -1,0 +1,43 @@
+.adventures-block {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .btn-activity{
+    margin: 0 5px;
+  }
+  
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    width: calc(25% - 16px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card img {
+    width: 100%;
+    height: 70%;
+  }
+  
+  .card h3 {
+    margin: 8px;
+    font-size: 1.2em;
+  }
+  
+  .card p {
+    margin: 8px;
+    font-size: 0.85em;
+    color: #555;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
