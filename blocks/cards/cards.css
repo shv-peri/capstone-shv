@@ -25,3 +25,19 @@
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
+
+.column-articles .cards-card-body p:nth-child(2),
+.column-articles-column-articles-nexttrip .cards-card-body p:nth-child(2) {
+  font-size: 0.85em;
+  color: #555;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.column-articles .cards-card-image img,
+.column-articles-column-articles-nexttrip .cards-card-image img {
+  max-width: 100%;
+  width: auto;
+  height: 70%;
+}

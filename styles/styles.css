@@ -16,8 +16,11 @@
   --light-color: #f8f8f8;
   --dark-color: #505050;
   --text-color: #131313;
+  --text-dark-color:#202020;
   --link-color: #3b63fb;
+  --patch-color:#ebebeb;
   --link-hover-color: #1d3ecf;
+  --yellow-color:#ffea00;
 
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;
@@ -82,6 +85,7 @@ body {
 
 body.appear {
   display: block;
+  overflow-x: hidden;
 }
 
 header {
@@ -173,7 +177,6 @@ button {
   max-width: 100%;
   margin: 12px 0;
   border: 2px solid transparent;
-  border-radius: 2.4em;
   padding: 0.5em 1.2em;
   font-family: var(--body-font-family);
   font-style: normal;
@@ -181,8 +184,8 @@ button {
   line-height: 1.25;
   text-align: center;
   text-decoration: none;
-  background-color: var(--link-color);
-  color: var(--background-color);
+  background-color: var(--yellow-color);
+  color: var( --text-dark-color);
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -193,7 +196,7 @@ a.button:hover,
 a.button:focus,
 button:hover,
 button:focus {
-  background-color: var(--link-hover-color);
+  background-color: var(--yellow-color);
   cursor: pointer;
 }
 
@@ -239,12 +242,12 @@ main > .section > div {
 }
 
 main > .section:first-of-type {
-  margin-top: 0;
+  margin-top: 80px;
 }
 
 @media (width >= 900px) {
   main > .section > div {
-    padding: 0 32px;
+    padding: 0 45px;
   }
 }
 
@@ -254,4 +257,86 @@ main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
+}
+
+.magazine-cards .cards-card-image img {
+  max-width: 100%;
+  width: auto;
+  height: 70%;
+}
+
+.about-us-section-contributors .cards .cards-card-image img{
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+.section.highlight-column.columns-container .columns > div img {
+  height: 100%;
+  object-fit: cover;
+}
+ 
+.section.highlight-column.columns-container .columns > div:first-child {
+  align-items: normal;
+  gap: 0;
+}
+
+.section.highlight-column.columns-container  .columns .columns-img-col + div{
+  padding: 30px 20px 10px 30px;
+}
+ 
+
+.highlight-column .columns-wrapper .columns.block{
+  background-color: var(--patch-color);
+}
+
+.magazine-cards .cards-card-body p:nth-child(2) {
+  font-size: 0.85em;
+  color: #555;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+
+/* for styling underline headers */
+
+main .default-content-wrapper > h2 {
+  position: relative;
+  margin-bottom: 25px;
+}
+ 
+main .default-content-wrapper > h2::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 2px;
+  background-color: #ffea00;
+  position: absolute;
+  bottom: -10px;
+}
+
+.about-us-section-contributors .cards ul li{
+  border: none;
+}
+
+.about-us-section-contributors .cards .cards-card-image{
+  text-align: center;
+}
+
+.about-us-section-contributors .cards .cards-card-body{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.about-us-section-contributors .cards .cards-card-body p:last-child{
+  display: flex;
+  justify-content: start;
+}
+
+#camping-in-western-australia + p{
+  text-align: justify;
 }
