@@ -167,30 +167,27 @@ export default async function decorate(block) {
   navWrapper.append(nav);
   block.append(navWrapper);
   const topNavElements = document.querySelector('.section.top-nav-bar-signin');
-  document.querySelector('.top-nav-wrapper').append(topNavElements)
+  document.querySelector('.top-nav-wrapper').append(topNavElements);
 
-
-
-  const searchElem =  document.querySelector('.form-wrapper #form');
-  searchElem.addEventListener('keypress', function(event){
+  const searchElem = document.querySelector('.form-wrapper #form');
+  searchElem.addEventListener('keypress', (event) => {
     event.stopPropagation();
-    if(event.charCode === 13){
-      let url = "www.google.com";
-      if (!url.startsWith("http")) {
-          url = "https://" + url; 
+    if (event.charCode === 13) {
+      let url = 'www.google.com';
+      if (!url.startsWith('http')) {
+        url = `https://${url}`;
       }
       window.open(url, '_blank');
     }
   });
 }
 
-window.onscroll = function(){
+// eslint-disable-next-line func-names
+window.onscroll = function () {
   const header = document.querySelector('.nav-wrapper');
-  if(window.scrollY > 40){
+  if (window.scrollY > 40) {
     header?.classList?.add('scaleout-header');
-  }else{
+  } else {
     header?.classList?.remove('scaleout-header');
   }
-}
-
-
+};

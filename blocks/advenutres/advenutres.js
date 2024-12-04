@@ -1,4 +1,4 @@
-import { fetchPlaceholders, getMetadata,createOptimizedPicture } from '../../scripts/aem.js'
+import { fetchPlaceholders, getMetadata, createOptimizedPicture } from '../../scripts/aem.js';
 
 const placeholders = await fetchPlaceholders(getMetadata('locale'));
 
@@ -8,7 +8,7 @@ const {
   all,
   skiing,
   surfing,
-  travel
+  travel,
 } = placeholders;
 
 async function createCard(data) {
@@ -16,15 +16,15 @@ async function createCard(data) {
   card.classList.add('card');
 
   const img = document.createElement('img');
-  img.src = `${data.Image}`; 
-  img.alt = data.Type || 'Image'; 
-  img.replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]))
+  img.src = `${data.Image}`;
+  img.alt = data.Type || 'Image';
+  img.replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]));
 
   const header = document.createElement('h3');
-  header.textContent = data.Place; 
+  header.textContent = data.PLACE;
 
   const description = document.createElement('p');
-  description.textContent = data.Description || 'No description available'; 
+  description.textContent = data.Description || 'No description available';
 
   card.append(img, header, description);
   return card;
@@ -41,7 +41,9 @@ async function createCardsContainer(jsonURL, filter, limit, offset) {
   const container = document.createElement('div');
   container.classList.add('cards-container');
 
+  // eslint-disable-next-line no-restricted-syntax
   for (const item of json.data) {
+    // eslint-disable-next-line no-await-in-loop
     const card = await createCard(item);
     container.appendChild(card);
   }
@@ -50,6 +52,7 @@ async function createCardsContainer(jsonURL, filter, limit, offset) {
 }
 
 async function createButtonsMap(jsonURL, parentDiv, limit, offset) {
+  let offsetVal = offset;
   const optionsMap = new Map();
   optionsMap.set('all', all);
   optionsMap.set('cycling', cycling);
@@ -63,14 +66,14 @@ async function createButtonsMap(jsonURL, parentDiv, limit, offset) {
 
   optionsMap.forEach((val, key) => {
     const button = document.createElement('button');
-    button.classList.add(`btn-activity`);
+    button.classList.add('btn-activity');
     button.textContent = val;
     button.id = val;
 
     button.addEventListener('click', async () => {
-      offset = 0; // Reset offset on button click
+      offsetVal = 0; // Reset _offset on button click
       const filter = key !== 'all' ? key : null;
-      const cardsContainer = await createCardsContainer(jsonURL, filter, limit, offset);
+      const cardsContainer = await createCardsContainer(jsonURL, filter, limit, offsetVal);
       const existingContainer = parentDiv.querySelector('.cards-container');
       existingContainer.replaceWith(cardsContainer);
     });
