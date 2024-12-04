@@ -15,11 +15,7 @@ async function createCard(data) {
   const card = document.createElement('div');
   card.classList.add('card');
 
-  const img = document.createElement('img');
-  img.src = `${data.Image}`;
-  img.alt = data.Type || 'Image';
-  img.replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]));
-
+  const img = createOptimizedPicture(data.Image, data.Type || 'Image', false, [{ width: '750' }]);
   const header = document.createElement('h3');
   header.textContent = data.PLACE;
 
