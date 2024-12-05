@@ -69,6 +69,12 @@ header nav[aria-expanded='true'] {
   min-height: 100dvh;
 }
 
+@media (width>=300px) and (width<900px) {
+  header nav[aria-expanded='true'] .top-nav-bar-form {
+    display: none;
+  }
+}
+
 @media (width >= 900px) {
   header nav {
     display: flex;
