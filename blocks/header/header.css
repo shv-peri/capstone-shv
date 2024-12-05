@@ -157,6 +157,7 @@ header nav[aria-expanded='true']  .top-nav-bar-links .default-content-wrapper .b
   background-color: transparent;
   font-size: 55px;
   margin: 0;
+  padding: 0;
 }
 
 header nav[aria-expanded='true'] .nav-hamburger-icon {
