@@ -21,19 +21,19 @@
   }
   
   /* Make cards responsive */
-    @media (max-width: 1200px) {
+    @media (width <= 1200px) {
       .dynamic-card {
         width: calc(33.33% - 16px); /* 3 cards per row */
       }
     }
 
-    @media (max-width: 992px) {
+    @media (width <= 992px) {
       .dynamic-card {
         width: calc(50% - 16px); /* 2 cards per row */
       }
     }
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       .dynamic-card {
         width: calc(100% - 16px); /* 1 card per row */
       }
