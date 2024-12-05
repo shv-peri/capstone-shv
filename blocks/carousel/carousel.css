@@ -145,7 +145,7 @@
     left: calc(50% - 2px);
   }
 
-  @media (width >= 360px) {
+  @media (width >= 300px) and (width< 600px) {
     .carousel .carousel-slide .carousel-slide-content {
       top: -190px;
       left: -160px;
