@@ -11,7 +11,7 @@ const {
   travel,
 } = placeholders;
 
-async function createCard(data) {
+function createCard(data) {
   const card = document.createElement('div');
   card.classList.add('card');
 
@@ -26,58 +26,68 @@ async function createCard(data) {
   return card;
 }
 
-async function createCardsContainer(jsonURL, filter, limit, offset) {
-  const pathname = filter
+async function fetchCardsData(jsonURL, filter, limit, offset) {
+  const url = filter
     ? `${jsonURL}?limit=${limit}&offset=${offset}&sheet=${filter}`
     : `${jsonURL}?limit=${limit}&offset=${offset}`;
+  const resp = await fetch(url);
+  return resp.json();
+}
 
-  const resp = await fetch(pathname);
-  const json = await resp.json();
+async function createCardsContainer(jsonURL, filter, limit, offset) {
+  const json = await fetchCardsData(jsonURL, filter, limit, offset);
 
   const container = document.createElement('div');
   container.classList.add('cards-container');
 
-  // eslint-disable-next-line no-restricted-syntax
-  for (const item of json.data) {
-    // eslint-disable-next-line no-await-in-loop
-    const card = await createCard(item);
-    container.appendChild(card);
-  }
-
+  const cardElements = json.data.map((item) => createCard(item)); // Batch card creation
+  container.append(...cardElements); // Append all cards at once
   return container;
 }
 
-async function createButtonsMap(jsonURL, parentDiv, limit, offset) {
-  let offsetVal = offset;
-  const optionsMap = new Map();
-  optionsMap.set('all', all);
-  optionsMap.set('cycling', cycling);
-  optionsMap.set('climbing', climbing);
-  optionsMap.set('skiing', skiing);
-  optionsMap.set('travel', travel);
-  optionsMap.set('surfing', surfing);
+function debounce(fn, delay) {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => fn(...args), delay);
+  };
+}
+
+function createButtonsMap(jsonURL, parentDiv, limit) {
+  const optionsMap = new Map([
+    ['all', all],
+    ['cycling', cycling],
+    ['climbing', climbing],
+    ['skiing', skiing],
+    ['travel', travel],
+    ['surfing', surfing],
+  ]);
 
   const container = document.createElement('div');
   container.classList.add('activity-container');
 
-  optionsMap.forEach((val, key) => {
-    const button = document.createElement('button');
-    button.classList.add('btn-activity');
-    button.textContent = val;
-    button.id = val;
+  let offsetVal = 0; // Use closure to track offset value
 
-    button.addEventListener('click', async () => {
-      offsetVal = 0; // Reset _offset on button click
-      const filter = key !== 'all' ? key : null;
-      document.querySelectorAll('.btn-activity').forEach((el) => el.classList.remove('active'));
-      button.classList.add('active');
-      const cardsContainer = await createCardsContainer(jsonURL, filter, limit, offsetVal);
-      const existingContainer = parentDiv.querySelector('.cards-container');
-      existingContainer.replaceWith(cardsContainer);
-    });
+  container.append(
+    ...Array.from(optionsMap, ([key, val]) => {
+      const button = document.createElement('button');
+      button.classList.add('btn-activity');
+      button.textContent = val;
+      button.id = val;
 
-    container.append(button);
-  });
+      button.addEventListener('click', debounce(async () => {
+        offsetVal = 0; // Reset offset on button click
+        const filter = key !== 'all' ? key : null;
+        document.querySelectorAll('.btn-activity').forEach((el) => el.classList.remove('active'));
+        button.classList.add('active');
+        const cardsContainer = await createCardsContainer(jsonURL, filter, limit, offsetVal);
+        const existingContainer = parentDiv.querySelector('.cards-container');
+        existingContainer.replaceWith(cardsContainer);
+      }, 300));
+
+      return button;
+    }),
+  );
 
   return container;
 }
@@ -89,8 +99,11 @@ export default async function decorate(block) {
 
   if (adventuresLink) {
     const jsonURL = adventuresLink.href;
-    const buttonsMap = await createButtonsMap(jsonURL, parentDiv, 20, 0);
-    const cardsContainer = await createCardsContainer(jsonURL, null, 20, 0);
+
+    const [buttonsMap, cardsContainer] = await Promise.all([
+      createButtonsMap(jsonURL, parentDiv, 20),
+      createCardsContainer(jsonURL, null, 20, 0),
+    ]);
 
     parentDiv.append(buttonsMap, cardsContainer);
     adventuresLink.replaceWith(parentDiv);
